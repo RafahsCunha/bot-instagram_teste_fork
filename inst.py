@@ -21,9 +21,9 @@ class InstagramBot():
         time.sleep(2)
         username = driver.find_element_by_xpath("//input[@name='username']")
         username.clear()
-        username.send_keys("ernestolucassep")
+        username.send_keys("")
         password = driver.find_element_by_xpath("//input[@name='password']")
-        password.send_keys("senha123")
+        password.send_keys("")
         password.send_keys(Keys.RETURN)
         time.sleep(3)
 
