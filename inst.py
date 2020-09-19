@@ -50,7 +50,6 @@ class InstagramBot():
         random_time = randint(20, 60)
         print(f"Irá rodar novamente em {random_time} segundos...")
         time.sleep(random_time)
-        print("Done")
 
     def loop_unfollow_and_follow(self):
         a = 10
@@ -59,7 +58,7 @@ class InstagramBot():
         while c < a:
             self.unfollow_and_follow(c)
             print(f"Rodando pela {c}ª vez")
-            c += c
+            c = c + 1
 
 
 
