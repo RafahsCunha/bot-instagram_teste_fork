@@ -25,7 +25,7 @@ class InstagramBot():
         password = driver.find_element_by_xpath("//input[@name='password']")
         password.send_keys("")
         password.send_keys(Keys.RETURN)
-        time.sleep(3)
+        time.sleep(4)
 
     def go_to_profile(self):
         driver = self.driver
@@ -52,6 +52,7 @@ class InstagramBot():
         time.sleep(random_time)
 
     def loop_unfollow_and_follow(self):
+        driver = self.driver
         a = 10
         c = 0
         print(f"Irá rodar {a} vezes")
@@ -59,7 +60,7 @@ class InstagramBot():
             self.unfollow_and_follow(c)
             print(f"Rodando pela {c}ª vez")
             c = c + 1
-
+        driver.close()
 
 
 InstagramBot().run()
