@@ -5,7 +5,8 @@ from random import randint
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-class InstagramBot():
+
+class InstagramBot:
     def __init__(self):
         self.driver = webdriver.Firefox()
 
@@ -13,11 +14,12 @@ class InstagramBot():
         self.login()
         self.go_to_profile()
         self.loop_unfollow_and_follow()
-        
 
     def login(self):
         driver = self.driver
-        driver.get("https://www.instagram.com/accounts/login/?hl=pt-br&source=auth_switcher")
+        driver.get(
+            "https://www.instagram.com/accounts/login/?hl=pt-br&source=auth_switcher"
+        )
         time.sleep(2)
         username = driver.find_element_by_xpath("//input[@name='username']")
         username.clear()
@@ -31,7 +33,6 @@ class InstagramBot():
         driver = self.driver
         driver.get("https://www.instagram.com/larissamanoela/?hl=pt-br")
         time.sleep(1)
-        
 
     def unfollow_and_follow(self, c):
         driver = self.driver
