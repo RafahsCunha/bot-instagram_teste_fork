@@ -16,6 +16,7 @@ class InstagramBot:
         self.loop_unfollow_and_follow()
 
     def login(self):
+        print("Realizando Login...")
         driver = self.driver
         driver.get(
             "https://www.instagram.com/accounts/login/?hl=pt-br&source=auth_switcher"
@@ -27,6 +28,7 @@ class InstagramBot:
         password = driver.find_element_by_xpath("//input[@name='password']")
         password.send_keys("")
         password.send_keys(Keys.RETURN)
+        print("Login realizado")
         time.sleep(4)
 
     def go_to_profile(self):
@@ -41,12 +43,12 @@ class InstagramBot:
         time.sleep(2)
         unfollow = driver.find_elements_by_tag_name("button")
         if c == 1:
-            unfollow[4].click()
+            unfollow[5].click()
             time.sleep(2)
         else:
             unfollow = driver.find_elements_by_tag_name("button")
-            time.sleep(5)
-            unfollow[25].click()
+            time.sleep(2)
+            unfollow[26].click()
             time.sleep(2)
 
         follow = driver.find_elements_by_tag_name("button")
@@ -57,7 +59,8 @@ class InstagramBot:
 
     def loop_unfollow_and_follow(self):
         driver = self.driver
-        a = 10
+
+        a = 40
         c = 1
         print(f"Irá rodar {a} vezes")
         while c < a:
