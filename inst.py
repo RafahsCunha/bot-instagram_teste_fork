@@ -43,16 +43,16 @@ class InstagramBot:
         time.sleep(2)
         unfollow = driver.find_elements_by_tag_name("button")
         if c == 1:
-            unfollow[5].click()
+            unfollow[6].click()
             time.sleep(2)
         else:
             unfollow = driver.find_elements_by_tag_name("button")
             time.sleep(2)
-            unfollow[26].click()
+            unfollow[27].click()
             time.sleep(2)
 
         follow = driver.find_elements_by_tag_name("button")
-        follow[0].click()
+        follow[1].click()
         random_time = randint(20, 60)
         print(f"Irá rodar novamente em {random_time} segundos...")
         time.sleep(random_time)
