@@ -1,6 +1,7 @@
 import time
-import selenium
+import configparser
 
+from loguru import logger
 from random import randint
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -16,7 +17,10 @@ class InstagramBot:
         self.loop_unfollow_and_follow()
 
     def login(self):
-        print("Realizando Login...")
+        config = configparser.ConfigParser()
+        config.read("config.ini")
+
+        logger.opt(colors=True).debug("Realizando login..")
         driver = self.driver
         driver.get(
             "https://www.instagram.com/accounts/login/?hl=pt-br&source=auth_switcher"
@@ -24,11 +28,11 @@ class InstagramBot:
         time.sleep(2)
         username = driver.find_element_by_xpath("//input[@name='username']")
         username.clear()
-        username.send_keys("")
+        username.send_keys(config["dados"]["username"])
         password = driver.find_element_by_xpath("//input[@name='password']")
-        password.send_keys("")
+        password.send_keys(config["dados"]["password"])
         password.send_keys(Keys.RETURN)
-        print("Login realizado")
+        logger.opt(colors=True).info("Login realizado\n")
         time.sleep(4)
 
     def go_to_profile(self):
@@ -54,18 +58,24 @@ class InstagramBot:
         follow = driver.find_elements_by_tag_name("button")
         follow[1].click()
         random_time = randint(20, 60)
-        print(f"Irá rodar novamente em {random_time} segundos...")
+        logger.opt(colors=True).info(f"{c}ª vez finalizada com sucesso!")
+        logger.opt(colors=True).info(
+            f"Irá rodar novamente em {random_time} segundos...\n"
+        )
         time.sleep(random_time)
 
     def loop_unfollow_and_follow(self):
         driver = self.driver
-
         a = 40
         c = 1
-        print(f"Irá rodar {a} vezes")
+        logger.opt(colors=True).info(f"Irá rodar {a} vezes\n")
         while c < a:
-            print(f"Rodando pela {c}ª vez")
-            self.unfollow_and_follow(c)
+            logger.opt(colors=True).debug(f"Rodando pela {c}ª vez")
+            try:
+                self.unfollow_and_follow(c)
+            except Exception as err:
+                logger.opt(colors=True).exception(f"Erro ao rodar pela {a}ª vez", err)
+                break
             c = c + 1
         driver.close()
 
