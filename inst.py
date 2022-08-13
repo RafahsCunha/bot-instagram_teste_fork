@@ -6,6 +6,7 @@ from random import randint
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+# ADICIONANDO COMENTÁRIO DE TESTE
 
 class InstagramBot:
     def __init__(self):
